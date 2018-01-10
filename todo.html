@@ -1,0 +1,81 @@
+<!-- BEGIN PAGE HEADER-->
+<h3 class="page-title" translate> UPGRADE </h3>
+<!-- END PAGE HEADER-->
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN TODO SIDEBAR -->
+        <div class="todo-ui">
+
+            <!-- END TODO SIDEBAR -->
+            <!-- BEGIN TODO CONTENT -->
+            <div class="todo-content">
+                <div class="portlet light">
+                    <!-- PROJECT HEAD -->
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-bar-chart font-green hide"></i>
+                            <span class="caption-helper" translate>MININGPOWER</span> &nbsp;
+                            <!--<span class="caption-subject font-green bold uppercase">select</span>-->
+                        </div>
+                    </div>
+                    <!-- end PROJECT HEAD -->
+                    <div class="portlet-body">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3" translate>HASHPOWER</label>
+                            <div class="col-md-5">
+                                <div  class="alert alert-success alert-dismissible" ng-if="upgradeaction">
+                                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <p>{{upgrademsg}}</p>
+                                </div>
+                                <div class="margin-bottom-10">
+                                    <select ng-init="powerselect='5'" class="bs-select form-control input-small" data-style="blue"  ng-model="powerselect"  ng-change="updateprice()">
+                                        <option ng-repeat="choice in choices">{{choice}}</option>
+                                    </select>
+                                </div>
+                                <h4><span translate>PRICE</span>{{powerPrice | currency}} <span translate>FORTWOYEARS</span></h4>
+                                <select ng-init="methodselect='Prepaid'" class="bs-select form-control input-small" data-style="blue"  ng-model="methodselect" ng-change="updatemethod()">
+                                    <option>Credit Card</option>
+                                    <option>Prepaid</option>
+                                </select><br>
+                                <h4>Tax: 14.98 %</h4>
+                                <button type="submit" ng-click="placeorder()" class="btn green">
+                                    <i class="fa fa-check"></i> Purchase</button>
+                            </div>
+                            <div class="panel panel-default col-md-4">
+                                <div class="panel-body">
+                                <h4><span translate>ESTIMATERET</span></h4>
+                                <h4><span class="text-info" translate> CURRATE</span>: 1 ETH = {{ethpercad | currency}}</h4>
+                                <h4> <span class="text-info" translate>ETHPERMONTH</span>: {{earnings.month.coins}} </h4>
+                                <h4> <span class="text-info" translate>CADPERMONTH</span> {{earnings.month.coins * ethpercad | currency}} </h4>
+                                <h4><span class="text-info" translate>CADTOTAL</span>: {{earnings.month.coins * ethpercad* 24 | currency}}</h4>
+
+                                    <small><span class="text-info">Source:</span> Cryptocompare , Nanopool
+                                      <br> <span class="text-danger"> *Please Notice*:</span>  All the data is coming from https://www.cryptocompare.com and https://nanopool.org, It is just an estimation of the current mining power. The real mining result will be affected by many factors.You bear responsibility for your own mining research and decisions, and should seek the advice of a qualified mining professional before making any purchase.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-9">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END TODO CONTENT -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+</div>
+<!-- END PAGE CONTENT-->
+<script>
+    AppTodo2.init(); // init todo page
+    $(document).ready(function () {
+        $('#spinnerpower').spinner({value:1, min: 1, max: 10});
+    });
+</script>
